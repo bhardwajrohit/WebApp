@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-aria.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-messages.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+    <title>Team Hortus - Admin Page</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/one-page-wonder.css" rel="stylesheet">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <script type="text/javascript" src="js/angularCode.js"></script>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script>
+
+    </script>
+
+</head>
+
+<body ng-app="mainApp">
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Team Hortus</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="#about">Update Configurations</a>
+                    </li>
+                    <li>
+                        <a href="#services">Current Configurations</a>
+                    </li>
+                    <li>
+                        <a href="#contact">Guides</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Full Width Image Header -->
+    <header class="header-image">
+        <div class="headline">
+            <div class="container">
+                <h1>Team Hortus</h1>
+                <h2>2017 Capstone Project</h2>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Content -->
+    <div class="container">
+        <hr class="featurette-divider">
+        <!-- First Featurette -->
+        <div class="featurette" id="about" ng-controller="recipesList">
+
+            <div class="modal fade col-sm-12" id="addRecipe" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content  col-sm-12">
+                        <h2> Add New Recipe </h2>
+                        <form ng-submit="addRecipe()">
+                            <div class="form-group">
+                                <label for="led1">Name:</label>
+                                <input type="text" class="form-control" ng-model="config.name" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="led2">LED 1:</label>
+                                <input type="text" class="form-control" ng-model="config.led1" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="led2 ">LED 2:</label>
+                                <input type="text" class="form-control" ng-model="config.led2" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="viewLed1">LED 3:</label>
+                                <input type="text" class="form-control" ng-model="config.led3" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="viewLed1">Time of the Day Fade Up Starts:</label>
+                                <input type="text" class="form-control" ng-model="config.fadeUpTime" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="viewLed1">Fade Up Duration:</label>
+                                <input type="text" class="form-control" ng-model="config.fadeUpDuration" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="viewLed1">Time of the Day Fade Down Starts:</label>
+                                <input type="text" class="form-control" ng-model="config.fadeDownTime" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="viewLed1">Fade Down Duration:</label>
+                                <input type="text" class="form-control" ng-model="config.fadeDownDuration" required />
+                            </div>
+                            <div class="form-group pull-right">
+
+                                <button class="btn btn-success" type="submit" value="submit">Submit</button>
+
+
+                                <button class="btn btn-default" data-toggle="modal" data-target="#addRecipe" value="reset">Cancel</button>
+
+                            </div>
+
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+
+            <h2 class="featurette-heading">Configure Horticulture System Values
+            </h2>
+            <div class="col-lg-4 ">
+                <h3> Recipes List <button type="button" class="btn btn-info pull-right" data-toggle="modal" data-target="#addRecipe">Add New Recipe</button></h3>
+
+
+                <ul class="list-group" ng-repeat="recipe in recipes">
+                    <li id="recipe._id" ng-cloak ng-click="recipeSelected(recipe._id, $index)" ng-model="recipe._id" ng-class="{'active': $index == selected}"
+                        class="list-group-item">{{recipe.name}}</li>
+                </ul>
+
+            </div>
+            <div class="col-sm-8">
+                <h3> Recipes Information <button type="button" ng-click="setActive()" class="btn btn-primary pull-right">Set As Active Recipe</button></h3>
+                <form ng-submit="updateRecipe()">
+                    <input type="hidden" ng-model="configurations._id" class="form-control" ng-value="configurations._id" />
+                    <div class="form-group">
+                        <label for="viewLed1">Name:</label>
+                        <input type="text" class="form-control" ng-model="configurations.name" />
+                    </div>
+                    <div class="form-group">
+                        <label for="viewLed1">LED 1:</label>
+                        <input type="text" class="form-control" ng-model="configurations.led1" />
+                    </div>
+                    <div class="form-group">
+                        <label for="viewLed1">LED 2:</label>
+                        <input type="text" class="form-control" ng-model="configurations.led2" />
+                    </div>
+                    <div class="form-group">
+                        <label for="viewLed1">LED 3:</label>
+                        <input type="text" class="form-control" ng-model="configurations.led3" />
+                    </div>
+                    <div class="form-group">
+                        <label for="viewLed1">Time of the Day Fade Up Starts:</label>
+                        <input type="text" class="form-control" ng-model="configurations.fadeUpTime" />
+                    </div>
+                    <div class="form-group">
+                        <label for="viewLed1">Fade Up Duration:</label>
+                        <input type="text" class="form-control" ng-model="configurations.fadeUpDuration" />
+                    </div>
+                    <div class="form-group">
+                        <label for="viewLed1">Time of the Day Fade Down Starts:</label>
+                        <input type="text" class="form-control" ng-model="configurations.fadeDownTime" />
+                    </div>
+                    <div class="form-group">
+                        <label for="viewLed1">Fade Down Duration:</label>
+                        <input type="text" class="form-control" ng-model="configurations.fadeDownDuration" />
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-2">
+                            <button class="btn btn-success" type="submit" value="submit">Submit</button>
+                        </div>
+                        <div class="col-sm-2">
+                            <button class="form-control" type="reset" value="reset">Reset</button>
+                        </div>
+                        <div class="col-sm-2">
+                            <button type="button" ng-click="deleteRecipe()" class="btn btn-danger">Delete Recipe</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <hr class="featurette-divider">
+
+        <!-- Second Featurette -->
+        <div class="featurette" id="services" ng-controller="viewActiveRecipe">
+            <img class="featurette-image img-circle img-responsive pull-left" src="img/config.jpg">
+            <h2 class="featurette-heading">Horticulture System Active Values
+            </h2>
+            <div class="col-sm-6">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">Name:</div>
+                    <div class="panel-body">
+                        <label id="viewLed1">{{configurations.name}}</label>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">LED 1:</div>
+                    <div class="panel-body">
+                        <label id="viewLed1">{{configurations.led1}}</label>
+                    </div>
+                </div>
+                <div class="panel panel-success">
+                    <div class="panel-heading">LED 2:</div>
+                    <div class="panel-body">
+                        <label id="viewLed2">{{configurations.led2}}</label>
+                    </div>
+                </div>
+                <div class="panel panel-warning">
+                    <div class="panel-heading">LED 3:</div>
+                    <div class="panel-body"><label id="viewLed3">{{configurations.led3}}</label></div>
+                </div>
+                <div class="panel panel-danger">
+                    <div class="panel-heading">Time of the Day Fade Up Starts:</div>
+                    <div class="panel-body"><label id="viewFadeUpTime">{{configurations.fadeUpTime}}</label></div>
+                </div>
+                <div class="panel panel-primary">
+                    <div class="panel-heading">Fade Up Duration:</div>
+                    <div class="panel-body"><label id="viewFadeUpDuration">{{configurations.fadeUpDuration}}</label></div>
+                </div>
+                <div class="panel panel-success">
+                    <div class="panel-heading">Time of the Day Fade Down Starts:</div>
+                    <div class="panel-body"><label id="viewFadeDownTime">{{configurations.fadeDownTime}}</label></div>
+                </div>
+                <div class="panel panel-warning">
+                    <div class="panel-heading">Fade Down Duration:</div>
+                    <div class="panel-body"><label id="viewFadeDownDuration">{{configurations.fadeDownDuration}}</label></div>
+                </div>
+            </div>
+        </div>
+    
+
+    <hr class="featurette-divider">
+
+    <!-- Third Featurette -->
+    <div class="featurette" id="contact">
+        <img class="featurette-image img-circle img-responsive pull-right" src="img/team.jpg" style="height:500px;width:500px;">
+        <h2 class="featurette-heading">IoT LED Horticulture Lighting System.
+        </h2>
+        <p class="lead">By <ul>
+            <li>Rohit Bhardwaj</li> 
+            <li>Mayur Hadole</li> 
+            <li>Kunal Malhotra</li>
+        </p>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <!-- Footer -->
+    <footer>
+        <div class="row">
+            <div class="col-lg-12">
+                <p>Contact Us.</p>
+            </div>
+        </div>
+    </footer>
+
+    </div>
+    <!-- /.container -->
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+</body>
+
+</html>
